@@ -1,6 +1,17 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const app = express();
+const mysql = require('mysql2');
+
+const connection =mysql.createConnection({
+	host:'localhost',
+	user:'gatito',
+	password:'gatito',
+	database:'users',
+});
+
+connection.connect();
+
 
 const users = [
   { id: 1, name: 'Alice', password: 'alice123' },
@@ -16,8 +27,14 @@ app.use(bodyParser.json());
 
 app.post('/users', (req, res) => {
   const newUser = req.body;
-  users.push(newUser);
-  res.send(newUser);
+  connection.query(
+	  'INSERT INTO users (name, password) VALUES (?,?)',
+	  [newUser.name,newUser.password],
+	  (error, results) => {
+		  if (error) throw error;
+		  res.send(newUser);
+	  }
+  );
 });
 
 app.listen(3000, () => {
