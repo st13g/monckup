@@ -1,0 +1,30 @@
+{
+  "name": "monckup",
+  "version": "1.0.0",
+  "description": "Monitor backups",
+  "main": "app.js",
+  "scripts": {
+    "test": "node app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/st13g/monckup.git"
+  },
+  "keywords": [
+    "backup",
+    "monitoring"
+  ],
+  "author": "Cristian Delgado",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/st13g/monckup/issues"
+  },
+  "homepage": "https://github.com/st13g/monckup#readme",
+  "dependencies": {
+    "body-parser": "^1.20.1",
+    "express": "^4.18.2",
+    "mariadb": "^3.0.2",
+    "mysql": "^2.18.1",
+    "mysql2": "^2.3.3"
+  }
+}

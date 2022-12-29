@@ -1,5 +1,4 @@
 const express = require('express');
-const bodyParser = require('body-parser');
 const app = express();
 
 const users = [
@@ -12,12 +11,14 @@ app.get('/users', (req, res) => {
   res.send(users);
 });
 
-app.use(bodyParser.json());
-
-app.post('/users', (req, res) => {
+app.post('/users', (req, res,next) => {
+try {
   const newUser = req.body;
   users.push(newUser);
   res.send(newUser);
+}catch (error) {
+	  next(error);
+  }
 });
 
 app.listen(3000, () => {
