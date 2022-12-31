@@ -28,8 +28,8 @@ app.use(bodyParser.json());
 app.post('/users', (req, res) => {
   const newUser = req.body;
   connection.query(
-	  'INSERT INTO users (name, password) VALUES (?,?)',
-	  [newUser.name,newUser.password],
+	  'INSERT INTO users (date, city, name , hostname, user, ip,os, type, status) VALUES (NOW(),?,?,?,?,?,?,?,?)',
+	  [newUser.city,newUser.name,newUser.hostname,newUser.user,newUser.ip,newUser.os,newUser.type,newUser.status],
 	  (error, results) => {
 		  if (error) throw error;
 		  res.send(newUser);
